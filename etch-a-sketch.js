@@ -38,7 +38,14 @@ function createGrid(size) {
  * Returns: nothing
  */
 function resizeSquare() {
-    let size = document.documentElement.clientHeight * .75;
+    let size;
+    // For portrait orientated devices, use 90% of width as the square size (mobile phones, etc.).
+    // For landscape orienteed devices, use 75% of the height as the square size.
+    if (screen.orientation.type == "portrait-primary" || screen.orientation.type == "portrait-secondary") {
+        size = document.documentElement.clientWidth * .9;
+    } else {
+        size = document.documentElement.clientHeight * .75;
+    }
     square.style.height = `${size}px`;
     square.style.width = `${size}px`;
 }
