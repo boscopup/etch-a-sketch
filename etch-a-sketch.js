@@ -21,6 +21,7 @@ function createGrid(size) {
         for (let j = 1; j <= size; j++) {
             squareDiv = document.createElement("div");
             squareDiv.style = "flex-grow: 1; border: 2px solid black;";
+            squareDiv.addEventListener("mouseover", changeSquare);
             rowDiv.appendChild(squareDiv);
         }
         square.appendChild(rowDiv);
@@ -38,4 +39,14 @@ function resizeSquare() {
     console.log(`Screen height is ${size}`);
     square.style.height = `${size}px`;
     square.style.width = `${size}px`;
+}
+
+/**
+ * Function: changeSquare
+ * Params: event
+ * Returns: nothing
+ */
+function changeSquare(e) {
+    currentSquare = e.target;
+    currentSquare.style.backgroundColor = "blue";
 }
