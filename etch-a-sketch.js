@@ -2,8 +2,9 @@ const container = document.querySelector("#container");
 const square = document.querySelector("#square");
 
 container.style = "height: 100%; width: 100%; display: flex; justify-content: center";
-square.style = "display: flex; flex-direction: column; border: 2px solid black;"
+square.style = "display: flex; flex-direction: column; border: 2px solid black; justify-content: space-evenly;";
 resizeSquare();
+createGrid(16);
 
 /**
  * Function: createGrid
@@ -11,6 +12,19 @@ resizeSquare();
  * Returns: Nothing
  */
 function createGrid(size) {
+    let rowDiv;
+    let squareDiv;
+    for (let i = 1; i <= size; i++) {
+        // Create a row
+        rowDiv = document.createElement("div");
+        rowDiv.style = "display: flex; flex-direction: row; border: 0; flex-grow: 1;";
+        for (let j = 1; j <= size; j++) {
+            squareDiv = document.createElement("div");
+            squareDiv.style = "flex-grow: 1; border: 2px solid black;";
+            rowDiv.appendChild(squareDiv);
+        }
+        square.appendChild(rowDiv);
+    }
     return;
 }
 
@@ -20,7 +34,7 @@ function createGrid(size) {
  * Returns: nothing
  */
 function resizeSquare() {
-    size = screen.height * .75;
+    let size = screen.height * .75;
     console.log(`Screen height is ${size}`);
     square.style.height = `${size}px`;
     square.style.width = `${size}px`;
