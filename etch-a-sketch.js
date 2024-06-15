@@ -3,8 +3,9 @@ const square = document.querySelector("#square");
 const btn = document.querySelector("#squareSize");
 btn.addEventListener("click", activateButton);
 const sizeText = document.querySelector("#sizeText");
+let currentGridSize = 16;
 resizeSquare();
-createGrid(16);
+createGrid(currentGridSize);
 
 /**
  * Function: createGrid
@@ -26,6 +27,7 @@ function createGrid(size) {
         }
         square.appendChild(rowDiv);
     }
+    currentGridSize = size;
     return;
 }
 
@@ -57,12 +59,31 @@ function changeSquare(e) {
  * Returns: Nothing
  */
 function activateButton() {
-    // Prompt user for new size, limit of 100
+    let newSize = currentGridSize;
 
-    // Validate user input
+    // Prompt user for new size, limit of 100
+    while (true) {
+        const userChoice = prompt("Select square side size (1-100):");
+        if (userChoice == null) {
+            return;
+        }
+
+        newSize = parseInt(userChoice);
+        if ((newSize != NaN) && (newSize >= 1) && (newSize <= 100)) {
+            break;
+        } else {
+            newSize = currentGridSize;
+        }
+    }
+
+    console.log(newSize);
 
     // Clear old grid
+    square.replaceChildren();
 
-    // Call resizeSquare() with new size
+    // Change sizeText
+    sizeText.textContent = `${newSize} x ${newSize}`;
+
+    createGrid(newSize);
     return;
 }
