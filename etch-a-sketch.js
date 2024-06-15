@@ -1,8 +1,6 @@
 const container = document.querySelector("#container");
 const square = document.querySelector("#square");
 
-container.style = "height: 100%; width: 100%; display: flex; justify-content: center";
-square.style = "display: flex; flex-direction: column; border: 2px solid black; justify-content: space-evenly;";
 resizeSquare();
 createGrid(16);
 
@@ -17,10 +15,10 @@ function createGrid(size) {
     for (let i = 1; i <= size; i++) {
         // Create a row
         rowDiv = document.createElement("div");
-        rowDiv.style = "display: flex; flex-direction: row; border: 0; flex-grow: 1;";
+        rowDiv.classList.add("row");
         for (let j = 1; j <= size; j++) {
             squareDiv = document.createElement("div");
-            squareDiv.style = "flex-grow: 1; border: 2px solid black;";
+            squareDiv.classList.add("individualSquare");
             squareDiv.addEventListener("mouseover", changeSquare);
             rowDiv.appendChild(squareDiv);
         }
