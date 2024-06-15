@@ -6,6 +6,7 @@ const sizeText = document.querySelector("#sizeText");
 let currentGridSize = 16;
 resizeSquare();
 createGrid(currentGridSize);
+window.addEventListener("resize", resizeSquare);
 
 /**
  * Function: createGrid
@@ -37,8 +38,7 @@ function createGrid(size) {
  * Returns: nothing
  */
 function resizeSquare() {
-    let size = screen.height * .75;
-    console.log(`Screen height is ${size}`);
+    let size = document.documentElement.clientHeight * .75;
     square.style.height = `${size}px`;
     square.style.width = `${size}px`;
 }
@@ -49,8 +49,19 @@ function resizeSquare() {
  * Returns: nothing
  */
 function changeSquare(e) {
-    currentSquare = e.target;
-    currentSquare.style.backgroundColor = randomColorGenerator();
+    const currentSquare = e.target;
+    let opacity = +currentSquare.style.opacity;
+    if (opacity == 0) {
+        currentSquare.style.backgroundColor = randomColorGenerator();
+    }
+    if (opacity < 1) {
+        opacity += 0.1;
+        opacity = Math.round(opacity * 10)/10;
+    } else {
+        return;
+    }
+    currentSquare.style.opacity = opacity;
+
 }
 
 /**
@@ -72,6 +83,16 @@ function randomColorGenerator() {
  */
 function randomNum() {
     return Math.floor(Math.random() * 256);
+}
+
+/**
+ * Function: extractTransparency
+ * Params: string rgbaValue
+ * Returns: number
+ */
+function extractTransparency(rgbaValue) {
+    // rgbaValue is of the format rgba(###,###,###,#.#)
+    return +rgbaValue.substr(-4,3);
 }
 
 /**
