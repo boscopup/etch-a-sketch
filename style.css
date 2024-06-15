@@ -1,8 +1,22 @@
 #container {
     height: 100%; 
     width: 100%; 
-    display: flex; 
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#squareSize {
+    font-size: 24px;
+    background-color: purple;
+    color: white;
+    border-radius: 8px;
+}
+
+#sizeText {
+    font-size: 16px;
 }
 
 #square {
@@ -18,7 +32,9 @@
     border: 0; 
     flex-grow: 1;
 }
+
 .individualSquare {
     flex-grow: 1; 
     border: 1px solid black;
+    background-color: white;
 }

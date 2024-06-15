@@ -1,6 +1,8 @@
 const container = document.querySelector("#container");
 const square = document.querySelector("#square");
-
+const btn = document.querySelector("#squareSize");
+btn.addEventListener("click", activateButton);
+const sizeText = document.querySelector("#sizeText");
 resizeSquare();
 createGrid(16);
 
@@ -47,4 +49,20 @@ function resizeSquare() {
 function changeSquare(e) {
     currentSquare = e.target;
     currentSquare.style.backgroundColor = "blue";
+}
+
+/**
+ * Function: activateButton
+ * Params: None
+ * Returns: Nothing
+ */
+function activateButton() {
+    // Prompt user for new size, limit of 100
+
+    // Validate user input
+
+    // Clear old grid
+
+    // Call resizeSquare() with new size
+    return;
 }
