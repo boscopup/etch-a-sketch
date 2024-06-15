@@ -50,7 +50,28 @@ function resizeSquare() {
  */
 function changeSquare(e) {
     currentSquare = e.target;
-    currentSquare.style.backgroundColor = "blue";
+    currentSquare.style.backgroundColor = randomColorGenerator();
+}
+
+/**
+ * Function: randomColorGenerator
+ * Params: None
+ * Returns: string rgb color
+ */
+function randomColorGenerator() {
+    const r = randomNum();
+    const g = randomNum();
+    const b = randomNum();
+    return (`rgb(${r},${g},${b})`);
+}
+
+/**
+ * Function: randomNum
+ * Params: None
+ * Returns: number between 0-255
+ */
+function randomNum() {
+    return Math.floor(Math.random() * 256);
 }
 
 /**
@@ -75,8 +96,6 @@ function activateButton() {
             newSize = currentGridSize;
         }
     }
-
-    console.log(newSize);
 
     // Clear old grid
     square.replaceChildren();
